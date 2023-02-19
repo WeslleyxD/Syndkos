@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #MYAPPS
     'core',
     'accounts',
+    'products',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'syndkos.urls'
@@ -66,6 +68,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # MY CONTEXTS
+                'core.context_processors.user_authenticated',
             ],
         },
     },
@@ -115,6 +119,10 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOCATE_PATHS = [
+    os.path.join(BASE_DIR, 'locale/'),
+]
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -133,8 +141,13 @@ if DEBUG:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# User
 
+
+# User / #get_user_model
 AUTH_USER_MODEL = 'accounts.User'
 
-
+# Auth
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.backends.EmailBackend'
+]

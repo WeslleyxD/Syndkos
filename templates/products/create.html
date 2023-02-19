@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="post" action="">
+    {% csrf_token %}
+    {{category_form.as_p}}
+    <button type="submit" value="Submit" name="category_send"> Enviar </button>
+</form>
+
+    
+<br>
+
+
+<form method="post" action="">
+    {% csrf_token %}
+    {{product_form.as_p}}
+    <button type="submit" value="Submit" name="product_send"> Enviar </button>
+</form>
+
+{% endblock %}

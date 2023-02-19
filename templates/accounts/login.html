@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+    <form method="post" action="{% url 'accounts:login_user' %}">
+        {% csrf_token %}
+        {{login_form.as_p}}
+        <!-- <a href="">Esqueceu a senha?</a> -->
+        <button type="submit" value="Submit"> Acessar </button>
+    </form>
+{% endblock %}
