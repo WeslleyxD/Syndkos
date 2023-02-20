@@ -10,3 +10,15 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = '__all__'
+
+    #     widgets = {
+    #         'image': forms.FileInput(attrs={'class': 'custom-file-input'}),
+    #     }
+
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+
+    #     self.fields['image'].widget.attrs.update({
+    #         'placeholder': 'Upload Image',
+    #         'aria-label': 'Upload Image'
+    #     })

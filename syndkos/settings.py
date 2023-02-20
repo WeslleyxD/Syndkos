@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-p8!wobc$-_4fbwglg#hk$57rm-@4%a6zh^_=73#k^*^+s#qg5n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -53,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    # #MYMIDDLEWARE
+    # 'accounts.middleware.BloquearAppMiddleware',
 ]
 
 ROOT_URLCONF = 'syndkos.urls'
@@ -132,7 +134,7 @@ STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
 if DEBUG:
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Default primary key field type

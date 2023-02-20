@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="{% url 'products:list_category' %}">Categorias</a>
+<a href="{% url 'products:list_product' %}">Produtos</a>
+
+
+<button id="open-modal-btn">Abrir modal</button>
+
+<div id="modal" style="display: none;">
+  <h2>Meu modal</h2>
+  <p>Conteúdo do meu modal aqui.</p>
+</div>
+
+  
+
+{% endblock %}

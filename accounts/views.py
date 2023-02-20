@@ -37,4 +37,5 @@ def login_user(request):
     return render(request, 'accounts/login.html', {'login_form': login_form})
 
 def logout_user(request):
-    return redirect('core:index')
+    logout(request)
+    return redirect('accounts:login_user')

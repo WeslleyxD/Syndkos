@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="middle-container">
+    <div class="middle-content-header">
+      <div class="middle-title">
+        <h2>Produtos</h2>
+      </div>
+      <a href="{% url 'products:create_product' %}"><button><i class="fa-solid fa-plus"></i>ADICIONAR</button></a>
+    </div>
+   
+    <div class="middle-content-list">
+      <ul class="list-category">
+
+        {% for product in products %}
+          <li>
+            <p>{{product.name}}</p>
+            <div>
+              <a href="{% url 'products:update_product' product.id %}"><i class="fa-2x fa-solid fa-file-pen"></i></a>
+              <a href="{% url 'products:delete_product' product.id %}"><i class="fa-2x fa-solid fa-trash"></i></a>
+            </div>
+          </li>
+        {% empty %}
+          <h2>Não há nenhum produto</h2>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+  
+
+{% endblock %}
