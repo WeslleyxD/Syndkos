@@ -33,6 +33,9 @@ def cart_update(request, product_id):
     return redirect('cart:cart_detail')
 
 def cart_detail(request):
+    if not request.user.is_authenticated:
+        return render(request, 'cart/not_login.html')
+
     cart = Cart(request)
 
     for item in cart:

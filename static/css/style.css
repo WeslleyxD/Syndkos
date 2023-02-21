@@ -842,3 +842,17 @@ tr:nth-child(odd){
   gap: 30px;
   justify-content: end;
 }
+
+.not_login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  transition: 1s all ease;
+}
+
+
+.not_login h2:hover {
+  color: var(--gray-color);
+}
+
