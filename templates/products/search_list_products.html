@@ -4,7 +4,7 @@
 {% block content %}
 
 
-<div class="product-list-container">
+<section class="product-list-container">
     <h2>Items encontrados na pesquisa</h2>
     <div class="product-list-content">
         <!-- PAGINATION PREVIOUS -->
@@ -34,6 +34,6 @@
             <a class="pagination-right" href="?page={{ page_obj.next_page_number }}"><i class="fa-3x fa-solid fa-right-long"></i></a>
         {% endif %}
     </div>
-</div>
+</section>
 
 {% endblock %}

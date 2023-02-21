@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'accounts',
     'products',
     'manager',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -75,7 +76,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # MY CONTEXTS
                 'core.context_processors.user_authenticated',
+                'core.context_processors.permission_vendedor',
                 'products.context_processors.categories',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -157,3 +160,6 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'accounts.backends.EmailBackend'
 ]
+
+#SESSION
+CART_SESSION_ID = 'cart'

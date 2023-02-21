@@ -13,8 +13,7 @@
 </head>
 
 <body>
-    <header>
-        <div class="header-container">
+    <header class="header-container">
             <div class="header-content">
                 <div class="logo">
                     <a href="{% url 'core:index' %}"><img id="logo" src="{% static 'img/syndkos.png' %}" alt="Logo"></a>
@@ -49,31 +48,47 @@
                         {% if request.user.is_authenticated %}
                         <div>
                             {% if request.user.groups_model == 'VENDEDOR' %}
-                                <a href="{% url 'manager:manager' %}"><span>Olá, {{user_authenticated|capfirst}}!</span></a>
+                            <a href="{% url 'manager:manager' %}"><span>Olá, {{user_authenticated|capfirst}}!</span></a>
                             {% else %}
-                                <a href="{% url 'core:index' %}"><span>Olá, {{user_authenticated|capfirst}}!</span></a>
+                            <a href="{% url 'core:index' %}"><span>Olá, {{user_authenticated|capfirst}}!</span></a>
                             {% endif %}
                             <h6>{{request.user.groups_model}}</h6>
                         </div>
                         {% else %}
-                            <a href="{% url 'accounts:login_user' %}"><span>{{user_authenticated|capfirst}}</span></a>
+                        <a href="{% url 'accounts:login_user' %}"><span>{{user_authenticated|capfirst}}</span></a>
                         {% endif %}
                         <i class="fa-solid fa-user"></i>
                     </div>
                     
-                    <div class="header-item-orders">
+                    <a href="{% url 'cart:cart_detail' %}">
+                        <div class="header-item-orders">
+                            <span>Meu carrinho</span>
+                            <i class="fa-sharp fa-solid fa-cart-shopping"> 
+                                <p>{{cart.get_quantity_products}}</p> 
+                            </i>
+                        </div>
+                    </a>
+
                     {% if not request.user.is_authenticated %}
-                        <a href="{% url 'accounts:login_user' %}"><span>Iniciar sessão</span></a>
+                    <a href="{% url 'accounts:login_user' %}">
+                        <div class="header-item-orders">
+                            <span>Iniciar sessão</span>
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                    </a>
                     {% else %}
-                        <a href="{% url 'accounts:logout_user' %}"><span>Encerrar sessão</span></a>
+                    <a href="{% url 'accounts:logout_user' %}">
+                        <div class="header-item-orders">
+                            <span>Encerrar sessão</span>
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                    </a>
                     {% endif %}
-                        <i class="fa-solid fa-user"></i>
-                    </div>
+    
 
                 </div>
             </div>
-
-
+    </header>
 
     {% block content %}
 
@@ -114,7 +129,6 @@
             <p>© 2023 - Nenhum direito reservado</p>
         </div>
     </footer>
-
   <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
 </body>
 </body>

@@ -4,11 +4,11 @@
 {% block content %}
 
 {% for category in categories %}
-<div class="list_categories">
+<section class="list_categories">
     <div class="list">
         <a href="{% url 'products:product_list_by_category' category.slug %}"> {{category.name}}</a>
     </div>
-</div>
+</section>
 {% endfor %}
 
 {% endblock %}

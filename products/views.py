@@ -1,4 +1,5 @@
 from .models import Product, Category
+from cart.forms import CartAddProductForm
 from core.utils import pagination
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
@@ -44,11 +45,12 @@ def detail_product(request, category_name, slug):
     #Produto selecionado no template list products
     product = get_object_or_404(Product, slug__iexact=slug)
 
-
+    cart_product_form = CartAddProductForm()
 
     return render(request, 
                 'products/detail_product.html',
                 {
                     'product': product,
+                    'cart_product_form': cart_product_form,
                 }
             )
