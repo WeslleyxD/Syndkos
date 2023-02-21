@@ -37,3 +37,18 @@ def search_list_products(request):
 
     # queryset = Product.objects.filter(Q(name__contains='john') & Q(category__contains='doe'))
     return render(request, 'products/search_list_products.html', {'page_obj': page_obj})
+
+
+
+def detail_product(request, category_name, slug):
+    #Produto selecionado no template list products
+    product = get_object_or_404(Product, slug__iexact=slug)
+
+
+
+    return render(request, 
+                'products/detail_product.html',
+                {
+                    'product': product,
+                }
+            )

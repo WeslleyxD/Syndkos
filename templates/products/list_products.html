@@ -19,9 +19,9 @@
                     <img src="{% if obj.image %}{{ obj.image.url }}{%else %}{% static 'img/no_image.png' %}{% endif %}">
                 </div>
                 <div class="product-list-item-description">
-                    <h3>{{ obj|truncatechars:70 }}</h3>
-                    <br>
-                    <h3>R$ {{ obj.price }}</h3>
+                    <h3>{{obj|truncatechars:30}}</h3>
+                    <h3>{{obj.description|truncatechars:25}}</h3>
+                    <h3>R${{obj.value}}</h3>
                 </div>
             </div>
         </a>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load parcelas %}
+
+{% block content %}
+
+
+<section class="detail-item-container">
+    <div class="detail-item-content">
+        <div>
+            <img src="{{product.image.url}}" alt="Img">
+        </div>
+        <div class="detail-block-infos">
+            <div>
+                <h2>R${{product.value|intcomma}}</h2>
+                <h3>Em até 10x de R$ {{product.value|parcelas:"10"|intcomma}}</h3>
+            </div>
+            <form method="POST" action="" >
+                {% csrf_token %}
+                <button type="submit" value="Submit"> <span> Adicionar ao carrinho </span><i class="fa-solid fa-cart-shopping"></i></button>
+            </form>
+            </div>
+        </div>
+</section>
+
+{% endblock %}

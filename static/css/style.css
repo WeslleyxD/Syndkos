@@ -27,10 +27,13 @@ body, html {
     /* gap: 20px; */
 }
 
-h2 {
+h2{
     font-size: 30px;
     font-family: 'Roboto Slab', serif;
     text-align: center;
+}
+h3 {
+  text-align: center;
 }
 
 a {
@@ -78,7 +81,7 @@ i {
 .middle-content-header button {
     font-size: 20px;
     padding: 10px 40px;
-    background-color: #00ff2a;
+    background-color: var(--green-color);
     cursor: pointer;
     border-radius: 10px;
     transition: all 1s ease;
@@ -101,7 +104,7 @@ i {
 }
 
 .middle-content-list li:nth-child(odd) {
-    background-color: rgb(235, 235, 235);
+    background-color: var(--third-color);
 }
 
 .middle-content-list ul {
@@ -141,7 +144,7 @@ th {
 }
 
 tr:nth-child(even){
-  background-color: rgb(243, 243, 243);
+  background-color: var(--third-color);
 }
 /* .list-category i {
     color: red;
@@ -211,7 +214,7 @@ tr:nth-child(even){
 .create-category-form button {
     font-size: 20px;
     padding: 10px 40px;
-    background-color: #00ff2a;
+    background-color:var(--green-color);
     cursor: pointer;
     border-radius: 10px;
     transition: all 1s ease-in-out;
@@ -267,7 +270,7 @@ tr:nth-child(even){
 .delete-category-content button {
     font-size: 20px;
     padding: 10px 40px;
-    background-color: #00ff2a;
+    background-color: var(--green-color);
     cursor: pointer;
     border-radius: 10px;
     transition: all ease 1s ;
@@ -704,4 +707,57 @@ tr:nth-child(even){
   font-size: 50px;
   font-family: 'Roboto Slab', serif;
   color: var(--third-color);
+}
+
+
+.product-list-item-description {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.detail-item-container {
+  background-color: var(--main-color);
+  display: flex;
+}
+
+.detail-item-content {
+  display: flex;
+  width: 100%;
+  margin: 0px 250px;
+  justify-content: space-around;
+}
+
+.detail-item-content img {
+  object-fit: cover;
+  max-width: 350px;
+  max-height: 440px;
+  min-width: 350px;
+  min-height: 440px;
+}
+
+.detail-item-content button {
+  font-size: 20px;
+  padding: 10px 40px;
+  background-color: var(--green-color);
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 1s ease;
+}
+
+.detail-item-content button:hover {
+  background-color: var(--gray-color);
+  color: var(--third-color);
+}
+
+.detail-item-content button:hover i {
+  color: var(--third-color);
+  transition: all 1s ease;
+}
+
+.detail-block-infos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }

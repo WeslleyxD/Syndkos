@@ -1,6 +1,8 @@
 from django.db import models
 from core.utils import path_media
 from django.template.defaultfilters import slugify
+from django.urls import reverse
+
 
 # Create your models here.
 
@@ -22,9 +24,9 @@ class Category(models.Model):
         ordering = ('-created_at',)
 
 class Product(models.Model):
-    category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='products', verbose_name='Categoria')
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='products', verbose_name='Categoria', db_index=True)
     name = models.CharField(verbose_name=('Nome'), max_length=100)
-    slug = models.SlugField(max_length=200)
+    slug = models.SlugField(max_length=200, db_index=True)
     description = models.TextField(('Descrição'))
     image = models.ImageField(verbose_name=('Imagem'), upload_to=path_media())
     value = models.DecimalField(('Valor'), max_digits=10, decimal_places=2)
@@ -37,6 +39,9 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(f'{self.name}')
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('products:detail_product', args=[self.category.slug, self.slug])
     
     class Meta:
         ordering = ('-created_at',)
