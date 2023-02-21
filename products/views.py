@@ -1,9 +1,12 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, Category
 from core.utils import pagination
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.http import require_POST
+from django.db.models import Q
 
 
-def select_category(request):
+
+def select_category(request, search_products):
     return render(request, 'products/select_category.html')
 
 def list_products(request, category_slug=None):
@@ -21,3 +24,16 @@ def list_products(request, category_slug=None):
                 {'category': category,
                 'page_obj': page_obj,
             })
+
+
+def search_list_products(request):
+    search = ''
+    if request.method == 'POST':
+        search = request.POST['search']
+
+    products = Product.objects.filter(Q(name__icontains=search) | Q(category__name__icontains=search))
+
+    page_obj = pagination(request, products, 3)
+
+    # queryset = Product.objects.filter(Q(name__contains='john') & Q(category__contains='doe'))
+    return render(request, 'products/search_list_products.html', {'page_obj': page_obj})

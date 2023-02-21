@@ -21,11 +21,10 @@
                 </div>
                 <div class="header-block-search">
                     <a href="{% url 'core:index' %}"><h1 id="name"><span class="underline-left-to-right">Syndkos</span></h1></a>
-                    <!-- TODO: CONSTRUIR SEARCH INPUT -->
-                    <form action="">
+                    <form method="POST" action="{% url 'products:search_list_products' %}">
                         {% csrf_token %}
                         <div class="search-form">
-                            <input type="text" id="search" name="search" placeholder="Busque seu produto" >
+                            <input type="text" id="search" name="search" placeholder="Procure pelo nome ou tipo do produto" >
                             <!-- onfocus="teste_onfocus()" -->
                             <i class="fa-2x fa-solid fa-magnifying-glass"></i>
                         </div>

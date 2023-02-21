@@ -238,7 +238,7 @@ search.addEventListener("focus", (event)=> {
 });
 
 search.addEventListener("blur", (event)=> {
-    search.setAttribute('placeholder', 'Procurar')
+    search.setAttribute('placeholder', 'Procure pelo nome ou tipo do produto')
     search.style.padding = "0px 20px"
     let button = document.querySelector(".search-form");
         button.classList.toggle("icon");
