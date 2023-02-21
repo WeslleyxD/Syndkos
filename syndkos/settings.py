@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'core',
     'accounts',
     'products',
+    'manager',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +73,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # MY CONTEXTS
                 'core.context_processors.user_authenticated',
+                'products.context_processors.categories',
             ],
         },
     },

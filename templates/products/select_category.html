@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% for category in categories %}
+<div class="list_categories">
+    <div class="list">
+        <a href="{% url 'products:product_list_by_category' category.slug %}"> {{category.name}}</a>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

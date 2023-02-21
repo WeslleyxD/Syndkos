@@ -7,7 +7,7 @@
       <div class="middle-title">
         <h2>Produtos</h2>
       </div>
-      <a href="{% url 'products:create_product' %}"><button><i class="fa-solid fa-plus"></i>ADICIONAR</button></a>
+      <a href="{% url 'manager:create_product' %}"><button><i class="fa-solid fa-plus"></i>ADICIONAR</button></a>
     </div>
    
     <div class="middle-content-list">
@@ -17,8 +17,8 @@
           <li>
             <p>{{product.name}}</p>
             <div>
-              <a href="{% url 'products:update_product' product.id %}"><i class="fa-2x fa-solid fa-file-pen"></i></a>
-              <a href="{% url 'products:delete_product' product.id %}"><i class="fa-2x fa-solid fa-trash"></i></a>
+              <a href="{% url 'manager:update_product' product.id %}"><i class="fa-2x fa-solid fa-file-pen"></i></a>
+              <a href="{% url 'manager:delete_product' product.id %}"><i class="fa-2x fa-solid fa-trash"></i></a>
             </div>
           </li>
         {% empty %}

@@ -31,18 +31,18 @@ class LoginForm(forms.Form):
         label=_('E-mail'), max_length=200, required=True, widget=forms.TextInput()
     )
     password = forms.CharField(
-        label=_("Senha"), widget=forms.PasswordInput(),
+        label=_("Senha"), widget=forms.PasswordInput(), required=True,
     )
 
-    error_messages = {
-        "invalid_login": _(
-            "E-mail ou senha incorreto."
-        ),
-        "invalid_password": _ (
-            "Faltou verificar o recaptcha."
-        )
+    # error_messages = {
+    #     "invalid_login": _(
+    #         "E-mail ou senha incorreto."
+    #     ),
+    #     "invalid_password": _ (
+    #         "Faltou verificar o recaptcha."
+    #     )
         #"inactive": _("This account is inactive."),
-    }
+    # }
     # def clean(self):
     #     cleaned_data = super().clean()
     #     username = cleaned_data.get("username")
@@ -58,12 +58,8 @@ class LoginForm(forms.Form):
         cleaned_data = super().clean()
         username = cleaned_data.get("email")
         password = cleaned_data.get("password")
-        # captcha = cleaned_data.get('captcha', """  """{})
         if not authenticate(username=username, password=password):
-            raise ValidationError(
-                self.error_messages["invalid_login"],
-                code="inactive",
-            )
+            self.add_error('email', 'E-mail ou senha incorreto')
         # if not captcha:
         #     raise ValidationError(
         #     self.error_messages["invalid_password"],

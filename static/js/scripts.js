@@ -227,7 +227,19 @@
 // });
 
 
+const search = document.querySelector("#search");
 
+search.addEventListener("focus", (event)=> {
+    search.removeAttribute('placeholder')
+    search.style.padding = "0px 20px 0px 50px"
+    let button = document.querySelector(".search-form");
+        button.classList.toggle("icon");
+    let body = document.querySelector("body");
+});
 
-const meuElemento = document.getElementById("$0");
-console.log($0)
+search.addEventListener("blur", (event)=> {
+    search.setAttribute('placeholder', 'Procurar')
+    search.style.padding = "0px 20px"
+    let button = document.querySelector(".search-form");
+        button.classList.toggle("icon");
+});

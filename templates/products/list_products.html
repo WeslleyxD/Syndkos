@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="product-list-container">
+    <h2>{{ category.name|capfirst }}</h2>
+    <div class="product-list-content">
+        <!-- PAGINATION PREVIOUS -->
+        {% if page_obj.has_previous %}
+            <a class="pagination-left" href="?page={{ page_obj.previous_page_number }}"><i class="fa-3x fa-solid fa-right-long"></i></a>
+        {% endif %}
+
+        <!--ITEMS-->
+        {% for obj in page_obj %}
+        <a href="{{ obj.get_absolute_url }}">
+            <div class="product-list-item">
+                <div>
+                    <img src="{% if obj.image %}{{ obj.image.url }}{%else %}{% static 'img/no_image.png' %}{% endif %}">
+                </div>
+                <div class="product-list-item-description">
+                    <h3>{{ obj|truncatechars:70 }}</h3>
+                    <br>
+                    <h3>R$ {{ obj.price }}</h3>
+                </div>
+            </div>
+        </a>
+        {% empty %}
+            <h3>NAO TEM NADA</h3>
+        {% endfor %}
+        <!-- PAGINATION NEXT -->
+        {% if page_obj.has_next %}
+            <a class="pagination-right" href="?page={{ page_obj.next_page_number }}"><i class="fa-3x fa-solid fa-right-long"></i></a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

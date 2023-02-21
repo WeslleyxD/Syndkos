@@ -29,6 +29,8 @@ def login_user(request):
             user = authenticate(username=cd['email'], password=cd['password'])
             if user is not None:
                 login(request, user)
+                if user.groups.filter(name='Vendedor').exists():
+                    return redirect('manager:manager')
                 if 'next' in request.META['HTTP_REFERER']:
                     return redirect(request.META['HTTP_REFERER'].split('next=')[1])
 

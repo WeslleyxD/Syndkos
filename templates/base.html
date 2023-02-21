@@ -11,14 +11,105 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet">
     <title>Syndkos</title>
 </head>
+
 <body>
-    <span>Olá, {{user_authenticated|capfirst}}</span></a>
-    
+    <header>
+        <div class="header-container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="{% url 'core:index' %}"><img id="logo" src="{% static 'img/syndkos.png' %}" alt="Logo"></a>
+                </div>
+                <div class="header-block-search">
+                    <a href="{% url 'core:index' %}"><h1 id="name"><span class="underline-left-to-right">Syndkos</span></h1></a>
+                    <!-- TODO: CONSTRUIR SEARCH INPUT -->
+                    <form action="">
+                        {% csrf_token %}
+                        <div class="search-form">
+                            <input type="text" id="search" name="search" placeholder="Busque seu produto" >
+                            <!-- onfocus="teste_onfocus()" -->
+                            <i class="fa-2x fa-solid fa-magnifying-glass"></i>
+                        </div>
+                    </form>
+                    
+                    <ul class="navbar">
+                        <li><i class="fa-2x fa-sharp fa-solid fa-list"></i>
+                            <ul class="dropdown">
+                                {% for category in categories %}
+                                    <a href="#">{{category.slug|capfirst}}</a>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% for category in categories_slice %}
+                            <li><a href="{% url 'products:product_list_by_category' category.slug %}">{{category.name}}</a>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="header-block-options">
+                    <div class="header-item-orders">
+                        <!-- <i class="fa-solid fa-gift"></i> -->
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'accounts:login_user' %}"><span>Olá, {{user_authenticated|capfirst}}!</span></a>
+                        {% else %}
+                            <a href="{% url 'accounts:login_user' %}"><span>{{user_authenticated|capfirst}}</span></a>
+                        {% endif %}
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    
+                    <div class="header-item-orders">
+                    {% if not request.user.is_authenticated %}
+                        <a href="{% url 'accounts:login_user' %}"><span>Iniciar sessão</span></a>
+                    {% else %}
+                        <a href="{% url 'accounts:logout_user' %}"><span>Encerrar sessão</span></a>
+                    {% endif %}
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                </div>
+            </div>
+
+
+
     {% block content %}
-    
+
 
     {% endblock %}
 
-    <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="social-medias">
+                <h3>Redes Sociais</h3>
+                <div>
+                    <a href="https://www.linkedin.com/in/weslley-pablo-7b0734222/" target="_blank"><i class="fa-2x fa-brands fa-github"></i></a>
+                    <a href="https://github.com/WeslleyxD" target="_blank"><i class="fa-2x fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="atendimentos">
+                <h3>Cliente</h3>
+                <ul>
+                    <!-- TODO: criar meus pedidos em perfil -->
+                    <a href=""><li>Meus pedidos</li></a>
+                    <a href=""><li>Trocar senha</li></a>
+                </ul>
+            </div>
+            {% if permission_vendedor %}
+            <div class="ofertas">
+                <h3>Vendedor</h3>
+                <ul>
+                    <!-- #TODO: criar todas essas features -->
+                    <a href="{% url 'manager:list_category' %}"><li>Categorias</li></a>
+                    <a href="{% url 'manager:list_product' %}"><li>Produtos</li></a>
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        <div class="copyright">
+            <p>WPAS LTDA | CNPJ: 00.000.000.0000-00 | Rua. à caminho de full-stack, S/N - Centro III, Web Developer - BR, 00000-000</p>
+            <p>© 2023 - Nenhum direito reservado</p>
+        </div>
+    </footer>
+
+  <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+</body>
 </body>
 </html>

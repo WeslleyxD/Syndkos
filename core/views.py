@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from accounts.forms import UserForm
+from products.models import Category
 
 
 def index(request):
-    user_form = UserForm()
-    return render(request, 
-                  'index.html',
-                  {
-                    'user_form': user_form,
-                  }
-    )
+
+  permission_vendedor = request.user.groups.filter(name='Vendedor').exists()
+  return render(request, 
+                'index.html',
+                {
+                  'permission_vendedor': permission_vendedor,
+                }
+  )

@@ -7,7 +7,7 @@
     <div class="middle-title">
       <h2>Categorias</h2>
     </div>
-    <a href="{% url 'products:create_category' %}"><button><i class="fa-solid fa-plus"></i>ADICIONAR</button></a>
+    <a href="{% url 'manager:create_category' %}"><button><i class="fa-solid fa-plus"></i>ADICIONAR</button></a>
   </div>
  
   <div class="middle-content-list">
@@ -16,11 +16,11 @@
         <li>
           <p>{{category.name}}</p>
           <div>
-            <a href="{% url 'products:update_category' category.id %}" id="category-modal-update"><i class="fa-2x fa-solid fa-file-pen"></i></a>
-            <a href="{% url 'products:delete_category' category.id %}"><i class="fa-2x fa-solid fa-trash"></i></a>
+            <a href="{% url 'manager:update_category' category.id %}" id="category-modal-update"><i class="fa-2x fa-solid fa-file-pen"></i></a>
+            <a href="{% url 'manager:delete_category' category.id %}"><i class="fa-2x fa-solid fa-trash"></i></a>
           </div>
         </li>
-        {% empty %}
+      {% empty %}
           <h2>Não há nenhum produto</h2>
       {% endfor %}
     </ul>
