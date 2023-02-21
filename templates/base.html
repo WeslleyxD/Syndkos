@@ -34,7 +34,7 @@
                         <li><i class="fa-2x fa-sharp fa-solid fa-list"></i>
                             <ul class="dropdown">
                                 {% for category in categories %}
-                                    <a href="#">{{category.slug|capfirst}}</a>
+                                    <a href="{% url 'products:product_list_by_category' category.slug %}">{{category.slug|capfirst}}</a>
                                 {% endfor %}
                             </ul>
                         </li>
