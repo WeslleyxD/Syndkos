@@ -6,75 +6,80 @@
 
 {% block content %}
 
-<h2>Seu carrinho</h2>
-<table class="cart-detail-container">
-    <thead>
-        <tr>
-            <th> </th>
-            <th>Nome</th>
-            <th>Adicionar</th>
-            <th>Diminuir</th>
-            <th>Remove</th>
-            <th>Quantidade</th>
-            <th>Valor unitário</th>
-            <th>Valor total</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in cart %}
-        {% with product=item.product %}
-        <tr>
-            <td>
-                <a href="{{ product.get_absolute_url }}">
-                    <img src="{% if product.image %}{{ product.image.url }} {% else %}{% static 'img/comp_estudante.png' %}{% endif %}">
-                </a>
-            </td>
-            <td>{{ product.name }}</td>
-            <td>
-                <form method="POST" action="{% url 'cart:cart_add' product.id %}" >
-                    {% csrf_token %}
-                    {{ item.add_quantity_form.quantity }}
-                    <button type="submit"><i class="fa-solid fa-plus"></i></button>
-                </form>
-            </td>
-            <td>
-                <form method="POST" action="{% url 'cart:cart_update' product.id %}">
-                    {% csrf_token %}
-                    {{ item.update_quantity_form.quantity }}
-                    <button id="update_button" type="submit"><i class="fa-sharp fa-solid fa-caret-down"></i></button>
-                </form>
-            </td>
-            <td>
-                <form method="POST" action="{% url 'cart:cart_remove' product.id %}">
-                    {% csrf_token %}
-                    <button id="delete_button" type="submit"><i class="fa-solid fa-xmark"></i> </button>
-                </form>
-            </td>
-            <td>
-                {{item.quantity}}
-            </td>
-            <td>R$ {{ item.value|intcomma }}</td>
-            <td>R$ {{ item.total_price|intcomma }}</td>
-        </tr>
-        {% endwith %}
-        {% endfor %}
-        <!-- <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Total</td>
-            <td>R$  {{ cart.get_total_price }}</td>
-        </tr> -->
+{% if cart.get_quantity_products %}
+    <h2>Seu carrinho</h2>
+    <table class="cart-detail-container">
+        <thead>
+            <tr>
+                <th> </th>
+                <th>Nome</th>
+                <th>Adicionar</th>
+                <th>Diminuir</th>
+                <th>Remove</th>
+                <th>Quantidade</th>
+                <th>Valor unitário</th>
+                <th>Valor total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+            {% with product=item.product %}
+            <tr>
+                <td>
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{% if product.image %}{{ product.image.url }} {% else %}{% static 'img/comp_estudante.png' %}{% endif %}">
+                    </a>
+                </td>
+                <td>{{ product.name }}</td>
+                <td>
+                    <form method="POST" action="{% url 'cart:cart_add' product.id %}" >
+                        {% csrf_token %}
+                        {{ item.add_quantity_form.quantity }}
+                        <button type="submit"><i class="fa-solid fa-plus"></i></button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" action="{% url 'cart:cart_update' product.id %}">
+                        {% csrf_token %}
+                        {{ item.update_quantity_form.quantity }}
+                        <button id="update_button" type="submit"><i class="fa-sharp fa-solid fa-caret-down"></i></button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" action="{% url 'cart:cart_remove' product.id %}">
+                        {% csrf_token %}
+                        <button id="delete_button" type="submit"><i class="fa-solid fa-xmark"></i> </button>
+                    </form>
+                </td>
+                <td>
+                    {{item.quantity}}
+                </td>
+                <td>R$ {{ item.value|intcomma }}</td>
+                <td>R$ {{ item.total_price|intcomma }}</td>
+            </tr>
+            {% endwith %}
+            {% endfor %}
+            <!-- <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total</td>
+                <td>R$  {{ cart.get_total_price }}</td>
+            </tr> -->
+            
+        </tbody>
         
-    </tbody>
-    
-</table>
-<div class="total">
-    <h3>Total: </h3>
-    <h2>R$ {{ cart.get_total_price|intcomma }}</h2>
-</div>
+    </table>
+    <div class="total">
+        <h3>Total: </h3>
+        <h2>R$ {{ cart.get_total_price|intcomma }}</h2>
+    </div>
+
+{% else %}
+    <h2>Nenhum item no carrinho</h2>
+{% endif %}
 
 {% endblock %}

@@ -2,13 +2,24 @@
 
 {% block content %}
 
-<form method="post" action="{% url 'accounts:register' %}">
-    {% csrf_token %}
+<section class="create-category-container">
+    <div class="create-category-content">
+        <div class="create-category-form">
+            <div>
+                <h2>Cadastrar-se</h2>
+            </div>
+            <form method="POST" action="{% url 'accounts:register' %}">
+                <!-- TODO: CONSTRUIR O SEARCH Q| -->
+                {% csrf_token %}
+                {{user_form.as_p}}
+                <div class="create-category-buttons">
+                    <button type="submit" value="Submit"> Criar </button>
+                    <a href="{% url 'core:index' %}"><button type="button">Voltar</button></a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 
-    {{user_form.as_p}}
-
-    <button type="submit" value="Submit"> Continuar </button>
-</form>
 
 {% endblock %}
-
