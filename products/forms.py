@@ -9,7 +9,7 @@ class CategoryForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = '__all__'
+        exclude = ['slug']
 
     #     widgets = {
     #         'image': forms.FileInput(attrs={'class': 'custom-file-input'}),

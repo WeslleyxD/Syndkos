@@ -71,7 +71,7 @@ i {
 .middle-content-header {
     display: flex;
     justify-content: space-between;
-    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     padding: 20px;
 }
 
@@ -81,10 +81,23 @@ i {
     background-color: #00ff2a;
     cursor: pointer;
     border-radius: 10px;
+    transition: all 1s ease;
 }
+
+.middle-content-header button:hover {
+  background-color: var(--gray-color);
+  color: var(--third-color);
+}
+
+.middle-content-header button:hover i {
+  color: var(--third-color);
+  transition: all 1s ease;
+}
+
 
 .middle-content-list {
     display: flex;
+    flex-direction: column;
 }
 
 .middle-content-list li:nth-child(odd) {
@@ -106,6 +119,30 @@ i {
     width: 100%;
 }
 
+.list-table {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+
+table {
+  padding: 8px 16px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  border-spacing: 0px;
+}
+
+td{
+  text-align: center;
+  margin: 0px 50px;
+}
+
+th {
+  padding: 10px;
+}
+
+tr:nth-child(even){
+  background-color: rgb(243, 243, 243);
+}
 /* .list-category i {
     color: red;
 } */
@@ -138,9 +175,9 @@ i {
 
 
 /* create category */
-.create-category-container {
+/* .create-category-container {
 
-}
+} */
 
 .create-category-content {
     display: flex;
@@ -476,6 +513,9 @@ i {
     color: var(--third-color);
   }
 
+  .header-item-orders h6 {
+    color: red;
+  }
 
   .footer-container {
     display: flex;
@@ -626,4 +666,42 @@ i {
   background-color: var(--gray-color);
   border-radius: 50%;
   padding: 20px;
+}
+
+
+.manager-options-container {
+}
+
+.manager-options-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.manager-options-content a {
+  width: 500px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: var(--gray-color);
+  transition: all 1s ease;
+}
+
+.manager-options-content a:hover {
+  width: 500px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 50px;
+  background-color: var(--main-color);
+}
+
+.manager-options-content span {
+  font-size: 50px;
+  font-family: 'Roboto Slab', serif;
+  color: var(--third-color);
 }

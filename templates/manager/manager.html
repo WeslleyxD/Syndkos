@@ -1,17 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<a href="{% url 'manager:list_category' %}">Categorias</a>
-<a href="{% url 'manager:list_product' %}">Produtos</a>
 
 
-<button id="open-modal-btn">Abrir modal</button>
-
-<div id="modal" style="display: none;">
-  <h2>Meu modal</h2>
-  <p>Conteúdo do meu modal aqui.</p>
-</div>
-
+<section class="manager-options-container">
+  <div class="manager-options-content">
+      <a href="{% url 'manager:list_category' %}"> <span> Categorias</span></a>
+      <a href="{% url 'manager:list_product' %}"><span> Produtos</span></a>
+  </div>
+</section>
   
 
 {% endblock %}

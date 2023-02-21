@@ -9,23 +9,39 @@
       </div>
       <a href="{% url 'manager:create_product' %}"><button><i class="fa-solid fa-plus"></i>ADICIONAR</button></a>
     </div>
-   
-    <div class="middle-content-list">
-      <ul class="list-category">
 
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Categoria</th>
+          <th>Descrição</th>
+          <th>Imagem</th>
+          <th>Valor</th>
+          <th>Criado em</th>
+          <th>Modificado em</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody>
         {% for product in products %}
-          <li>
-            <p>{{product.name}}</p>
-            <div>
-              <a href="{% url 'manager:update_product' product.id %}"><i class="fa-2x fa-solid fa-file-pen"></i></a>
-              <a href="{% url 'manager:delete_product' product.id %}"><i class="fa-2x fa-solid fa-trash"></i></a>
-            </div>
-          </li>
-        {% empty %}
-          <h2>Não há nenhum produto</h2>
+        <tr>
+          <td>{{product.name}}</td>
+          <td>{{product.category}}</td>
+          <td>{{product.description|truncatechars:25}}</td>
+          <td>{{product.image|truncatechars:40}}</td>
+          <td>{{product.value}}</td>
+          <td>{{product.created_at|date:"d/m/Y - H:i"}}</td>
+          <td>{{product.modified_at|date:"d/m/Y - H:i"}}</td>
+          <td>            
+            <a href="{% url 'manager:update_category' product.id %}" id="category-modal-update"><i class="fa-2x fa-solid fa-file-pen"></i></a>
+            <a href="{% url 'manager:delete_category' product.id %}"><i class="fa-2x fa-solid fa-trash"></i></a></td>
+        </tr>
         {% endfor %}
-      </ul>
-    </div>
+      </tbody>
+    </table>
+
+
   </section>
   
 

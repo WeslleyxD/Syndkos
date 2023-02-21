@@ -48,7 +48,14 @@
                     <div class="header-item-orders">
                         <!-- <i class="fa-solid fa-gift"></i> -->
                         {% if request.user.is_authenticated %}
-                            <a href="{% url 'accounts:login_user' %}"><span>Olá, {{user_authenticated|capfirst}}!</span></a>
+                        <div>
+                            {% if request.user.groups_model == 'VENDEDOR' %}
+                                <a href="{% url 'manager:manager' %}"><span>Olá, {{user_authenticated|capfirst}}!</span></a>
+                            {% else %}
+                                <a href="{% url 'core:index' %}"><span>Olá, {{user_authenticated|capfirst}}!</span></a>
+                            {% endif %}
+                            <h6>{{request.user.groups_model}}</h6>
+                        </div>
                         {% else %}
                             <a href="{% url 'accounts:login_user' %}"><span>{{user_authenticated|capfirst}}</span></a>
                         {% endif %}
@@ -80,8 +87,8 @@
             <div class="social-medias">
                 <h3>Redes Sociais</h3>
                 <div>
-                    <a href="https://www.linkedin.com/in/weslley-pablo-7b0734222/" target="_blank"><i class="fa-2x fa-brands fa-github"></i></a>
-                    <a href="https://github.com/WeslleyxD" target="_blank"><i class="fa-2x fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/WeslleyxD" target="_blank"><i class="fa-2x fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/weslley-pablo-7b0734222/" target="_blank"><i class="fa-2x fa-brands fa-linkedin"></i></a>
                 </div>
             </div>
             <div class="atendimentos">
