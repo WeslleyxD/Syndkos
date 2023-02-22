@@ -210,8 +210,8 @@ tr:nth-child(odd){
     gap: 50px;
     border: 0.5px solid var(--gray-color);
     border-radius: 10px;
-
 }
+
 .create-category-form input, select, textarea {
     padding: 5px 15px;
     width: 100%;
@@ -847,7 +847,24 @@ tr:nth-child(odd){
   display: flex;
   align-items: center;
   gap: 30px;
-  justify-content: end;
+  justify-content: space-between;
+}
+
+.total h2:nth-child(1) {
+  color: var(--main-color);
+  animation: checkout 5s infinite;
+}
+
+.total button {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+@keyframes checkout {
+  0%   {transform: scale(1);}
+  50%  {transform: scale(1.3)}
+  100%  {transform: scale(1)}
 }
 
 .not_login {
@@ -863,3 +880,17 @@ tr:nth-child(odd){
   color: var(--main-color);
 }
 
+
+
+.create-order-container {
+}
+
+.create-order-content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.create-order-content table {
+  width: 500px;
+  height: 50px;
+}

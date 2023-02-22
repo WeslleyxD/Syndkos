@@ -12,6 +12,9 @@ class Category(models.Model):
     created_at = models.DateTimeField(('Criado em'), auto_now_add=True, editable=False)
     modified_at = models.DateTimeField(('Modificado em'), auto_now=True)
 
+    class Meta:
+        ordering = ('-created_at',)
+        verbose_name_plural = 'Categorias'
 
     def __str__(self):
         return self.name
@@ -20,8 +23,6 @@ class Category(models.Model):
         self.slug = slugify(f'{self.name}')
         super().save(*args, **kwargs)
     
-    class Meta:
-        ordering = ('-created_at',)
 
 class Product(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='products', verbose_name='Categoria', db_index=True)
@@ -32,6 +33,10 @@ class Product(models.Model):
     value = models.DecimalField(('Valor'), max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(('Criado em'), auto_now_add=True, editable=False)
     modified_at = models.DateTimeField(('Modificado em'), auto_now=True)
+    
+    class Meta:
+        ordering = ('-created_at',)
+        verbose_name_plural = 'Produtos'
 
     def __str__(self):
         return self.name
@@ -42,6 +47,3 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('products:detail_product', args=[self.category.slug, self.slug])
-    
-    class Meta:
-        ordering = ('-created_at',)

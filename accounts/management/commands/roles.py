@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from accounts.models import User
+# from accounts.models import User
 from django.apps import apps
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission

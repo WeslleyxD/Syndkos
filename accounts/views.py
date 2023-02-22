@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
-from .forms import UserForm, LoginForm
+from .forms import UserForm, LoginForm, AddressForm
 from django.contrib.auth import authenticate, login, logout
+from .models import User, Address
+from django.forms import inlineformset_factory
+
 # Create your views here.
 
 def register(request):
-    user_form = UserForm()
-
+    user_form = UserForm()    
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
         if user_form.is_valid():
@@ -19,6 +21,7 @@ def register(request):
                     'user_form': user_form,
                   }
     )
+
 
 def login_user(request):
     login_form = LoginForm()

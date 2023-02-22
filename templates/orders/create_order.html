@@ -4,43 +4,57 @@
 
 {% block content %}
 
+<section class="create-order-container">
+    <h2>Seu pedido</h2>
+    <div class="create-order-content">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Qtd</th>
+                    <th>Valor unitário</th>
+                    <th>Valor total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart %}
+                    {% with product=item.product %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>
+                            {{item.quantity}}
+                        </td>
+                        <td>R$ {{ item.value|intcomma }}</td>
+                        <td>R$ {{ item.total_price|intcomma }}</td>
+                    </tr>
+                    {% endwith %}
+                {% endfor %}
+            </tbody>
+        </table>
 
-<h2>Seu pedido</h2>
-<table class="cart-detail-container">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Qtd</th>
-            <th>Valor unitário</th>
-            <th>Valor total</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in cart %}
-            {% with product=item.product %}
-            <tr>
-                <td>{{ product.name }}</td>
-                <td>
-                    {{item.quantity}}
-                </td>
-                <td>R$ {{ item.value|intcomma }}</td>
-                <td>R$ {{ item.total_price|intcomma }}</td>
-            </tr>
-            {% endwith %}
-        {% endfor %}
-    </tbody>
-    
-</table>
+        <div class="create-category-form">
+            <div>
+                <h2>Enviar para:</h2>
+            </div>
+            <form method="POST" action="{% url 'accounts:register' %}">
+                <!-- TODO: CONSTRUIR O SEARCH Q| -->
+                {% csrf_token %}
+                {{order_create.as_p}}
+                <div class="create-category-buttons">
+                    <button type="submit" value="Submit"> Criar </button>
+                    <a href="{% url 'core:index' %}"><button type="button">Voltar</button></a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 
 <div class="total">
-    <h3>Total:</h3>
-    <h2>R$ {{ cart.get_total_price|intcomma }}</h2>
+    <div style="text-align: right;">
+        <h3>Total:</h3>
+        <h2>R$ {{ cart.get_total_price|intcomma }}</h2>
+    </div>
 </div>
-
-<form method="POST" action="{% url 'orders:create_order' %}">
-    {% csrf_token %}
-    <button type="submit"><i class="fa-solid fa-plus"></i></button>
-</form>
 
 
 {% endblock %}

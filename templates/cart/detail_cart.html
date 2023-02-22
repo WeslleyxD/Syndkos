@@ -63,11 +63,14 @@
         
     </table>
     <div class="total">
-        <h3>Total: </h3>
-        <h2>R$ {{ cart.get_total_price|intcomma }}</h2>
+        <a href="{% url 'orders:create_order' %}" class="button"><h2>Finalizar carrinho</h2></a>
+        <div>
+            <h3>Total: </h3>
+            <h2>R$ {{ cart.get_total_price|intcomma }}</h2>
+        </div>
     </div>
 
-    <a href="{% url 'orders:order_create' %}" class="button">Checkout</a>
+
 
 {% else %}
     <h2>Nenhum item no carrinho</h2>
