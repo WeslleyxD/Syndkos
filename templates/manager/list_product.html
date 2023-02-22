@@ -2,6 +2,7 @@
 
 {% block content %}
 
+{% if products %}
 <section class="middle-container">
     <div class="middle-content-header">
       <div class="middle-title">
@@ -35,14 +36,22 @@
           <td>{{product.modified_at|date:"d/m/Y - H:i"}}</td>
           <td>            
             <a href="{% url 'manager:update_category' product.id %}" id="category-modal-update"><i class="fa-2x fa-solid fa-file-pen"></i></a>
-            <a href="{% url 'manager:delete_category' product.id %}"><i class="fa-2x fa-solid fa-trash"></i></a></td>
+            <a href="{% url 'manager:delete_category' product.id %}"><i class="fa-2x fa-solid fa-trash"></i></a>
+          </td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
 
-
   </section>
   
+{% else %}
+<div class="middle-content-header">
+  <div class="middle-title">
+    <h2>Produtos</h2>
+  </div>
+  <a href="{% url 'manager:create_product' %}"><button><i class="fa-solid fa-plus"></i>ADICIONAR</button></a>
+</div>
+{% endif %}
 
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.db import models
 from core.utils import path_media
-from django.template.defaultfilters import slugify
 from django.urls import reverse
+from django.template.defaultfilters import slugify
 
 
 # Create your models here.

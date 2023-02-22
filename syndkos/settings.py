@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -91,10 +92,21 @@ WSGI_APPLICATION = 'syndkos.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'weslley',
+        'PASSWORD': '33811244',
+        'HOST': 'localhost',
+        'PORT': 5432,
     }
 }
 
@@ -162,5 +174,10 @@ AUTHENTICATION_BACKENDS = [
     'accounts.backends.EmailBackend'
 ]
 
-#SESSION
+# Logins
+LOGIN_URL = reverse_lazy('accounts:login_user')
+
+# Session
 CART_SESSION_ID = 'cart'
+
+

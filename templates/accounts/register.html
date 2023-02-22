@@ -9,7 +9,6 @@
                 <h2>Cadastrar-se</h2>
             </div>
             <form method="POST" action="{% url 'accounts:register' %}">
-                <!-- TODO: CONSTRUIR O SEARCH Q| -->
                 {% csrf_token %}
                 {{user_form.as_p}}
                 <div class="create-category-buttons">

@@ -7,5 +7,6 @@ PRODUCT_QUANTITY_CHOICES_UPDATE = [(i, str(i)) for i in range(-1, -11, -1)]
 class CartAddProductForm(forms.Form):
     quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES, coerce=int, label='Qnt')
 
+
 class CartUpdateProductForm(forms.Form):
     quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES_UPDATE, coerce=int, label='Qnt')

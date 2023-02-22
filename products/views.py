@@ -1,10 +1,9 @@
 from .models import Product, Category
 from cart.forms import CartAddProductForm
 from core.utils import pagination
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views.decorators.http import require_POST
 from django.db.models import Q
-
+from django.shortcuts import render, get_object_or_404
+from django.views.decorators.http import require_POST
 
 
 def select_category(request, search_products):
@@ -20,11 +19,7 @@ def list_products(request, category_slug=None):
 
     page_obj = pagination(request, products, 3)
 
-    return render(request, 
-                'products/list_products.html',
-                {'category': category,
-                'page_obj': page_obj,
-            })
+    return render(request, 'products/list_products.html', {'category': category,'page_obj': page_obj,})
 
 
 def search_list_products(request):
@@ -36,7 +31,6 @@ def search_list_products(request):
 
     page_obj = pagination(request, products, 3)
 
-    # queryset = Product.objects.filter(Q(name__contains='john') & Q(category__contains='doe'))
     return render(request, 'products/search_list_products.html', {'page_obj': page_obj})
 
 
@@ -47,10 +41,4 @@ def detail_product(request, category_name, slug):
 
     cart_product_form = CartAddProductForm()
 
-    return render(request, 
-                'products/detail_product.html',
-                {
-                    'product': product,
-                    'cart_product_form': cart_product_form,
-                }
-            )
+    return render(request, 'products/detail_product.html', {'product': product, 'cart_product_form': cart_product_form,})

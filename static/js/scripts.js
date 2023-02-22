@@ -5,7 +5,6 @@ search.addEventListener("focus", (event)=> {
     search.style.padding = "0px 20px 0px 50px"
     let button = document.querySelector(".search-form");
         button.classList.toggle("icon");
-    let body = document.querySelector("body");
 });
 
 search.addEventListener("blur", (event)=> {
@@ -26,15 +25,15 @@ cep.addEventListener("blur", (event)=> {
     })
     .then(response => response.json())
     .then(data => {
-        // estado_value = data.uf
-        // cidade_value = data.localidade
-        // bairro_value = data.bairro
-        // logradouro_value = data.logradouro
+        estado_value = data.uf
+        cidade_value = data.localidade
+        bairro_value = data.bairro
+        logradouro_value = data.logradouro
 
-        // document.querySelector("#id_state").value = estado_value ? estado_value : '';
-        // document.querySelector("#id_city").value = cidade_value ? cidade_value : '';
-        // document.querySelector("#id_district").value = bairro_value ? bairro_value : '';
-        // document.querySelector("#id_address").value = logradouro_value ? logradouro_value : '';
+        document.querySelector("#id_state").value = estado_value ? estado_value : '';
+        document.querySelector("#id_city").value = cidade_value ? cidade_value : '';
+        document.querySelector("#id_district").value = bairro_value ? bairro_value : '';
+        document.querySelector("#id_address").value = logradouro_value ? logradouro_value : '';
 
     })
     .catch(error => console.error(error));

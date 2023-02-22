@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<section class="manager-options-container">
+  <div class="manager-options-content">
+      <a href="{% url 'accounts:list_address' %}"> <span> Endereços</span></a>
+      <a href="{% url 'accounts:list_order' %}"> <span> Pedidos</span></a>
+  </div>
+</section>
+  
+
+{% endblock %}
