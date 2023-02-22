@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+
+
+<h2>Seu pedido</h2>
+<table class="cart-detail-container">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Qtd</th>
+            <th>Valor unitário</th>
+            <th>Valor total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>
+                    {{item.quantity}}
+                </td>
+                <td>R$ {{ item.value|intcomma }}</td>
+                <td>R$ {{ item.total_price|intcomma }}</td>
+            </tr>
+            {% endwith %}
+        {% endfor %}
+    </tbody>
+    
+</table>
+
+<div class="total">
+    <h3>Total:</h3>
+    <h2>R$ {{ cart.get_total_price|intcomma }}</h2>
+</div>
+
+<form method="POST" action="{% url 'orders:create_order' %}">
+    {% csrf_token %}
+    <button type="submit"><i class="fa-solid fa-plus"></i></button>
+</form>
+
+
+{% endblock %}

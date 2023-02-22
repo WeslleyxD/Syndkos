@@ -59,17 +59,6 @@
             </tr>
             {% endwith %}
             {% endfor %}
-            <!-- <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Total</td>
-                <td>R$  {{ cart.get_total_price }}</td>
-            </tr> -->
-            
         </tbody>
         
     </table>
@@ -77,6 +66,8 @@
         <h3>Total: </h3>
         <h2>R$ {{ cart.get_total_price|intcomma }}</h2>
     </div>
+
+    <a href="{% url 'orders:order_create' %}" class="button">Checkout</a>
 
 {% else %}
     <h2>Nenhum item no carrinho</h2>
