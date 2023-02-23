@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if address %}
+<section class="middle-container">
+    <div class="middle-content-header">
+      <div class="middle-title">
+        <h2>Endereços</h2>
+      </div>
+      <a href="{% url 'accounts:create_address' %}"><button><i class="fa-solid fa-plus"></i>ADICIONAR</button></a>
+    </div>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>CEP</th>
+          <th>Estado</th>
+          <th>Cidade</th>
+          <th>Bairro</th>
+          <th>Logradouro</th>
+          <th>Número</th>
+          <th>Complemento</th>
+          <th>Selecionado</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for adre in address %}
+        <tr>
+          <td>{{adre.cep}}</td>
+          <td>{{adre.state}}</td>
+          <td>{{adre.city}}</td>
+          <td>{{adre.district}}</td>
+          <td>{{adre.address}}</td>
+          <td>{{adre.number}}</td>
+          <td>{{adre.complement}}</td>
+          <td>{{adre.selected}}</td>
+          <td>            
+            <a href="{% url 'accounts:update_address' adre.id %}" id="category-modal-update"><i class="fa-2x fa-solid fa-file-pen"></i></a>
+            <a href="{% url 'accounts:delete_address' adre.id %}"><i class="fa-2x fa-solid fa-trash"></i></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% else %}
+  <div class="middle-content-header">
+    <div class="middle-title">
+      <h2>Endereços</h2>
+    </div>
+    <a href="{% url 'accounts:create_address' %}"><button><i class="fa-solid fa-plus"></i>ADICIONAR</button></a>
+  </div>
+  <h2>Não há nenhum endereço</h2>
+{% endif %}
+{% endblock %}

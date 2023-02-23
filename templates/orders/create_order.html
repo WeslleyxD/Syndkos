@@ -36,12 +36,11 @@
             <div>
                 <h2>Enviar para:</h2>
             </div>
-            <form method="POST" action="{% url 'accounts:register' %}">
-                <!-- TODO: CONSTRUIR O SEARCH Q| -->
+            <form method="POST" action="{% url 'orders:create_order' %}">
                 {% csrf_token %}
-                {{order_create.as_p}}
+                {{address_form.as_p}}
                 <div class="create-category-buttons">
-                    <button type="submit" value="Submit"> Criar </button>
+                    <button type="submit" value="Submit"> Enviar </button>
                     <a href="{% url 'core:index' %}"><button type="button">Voltar</button></a>
                 </div>
             </form>

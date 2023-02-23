@@ -1,6 +1,6 @@
-from django.core.paginator import Paginator
 import json
 import requests
+from django.core.paginator import Paginator
 
 def path_media():
     return "products/%Y/%m/%d"

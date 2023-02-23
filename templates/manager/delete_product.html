@@ -6,7 +6,6 @@
     <div class="delete-category-content">
     <h2>Deseja realmente excluir a categoria {{category.name}}?</h2>
         <form method="POST">
-            <!-- TODO: CONSTRUIR O SEARCH Q| -->
             {% csrf_token %}
             <div class="delete-category-buttons">
                 <button type="submit">Excluir</button>

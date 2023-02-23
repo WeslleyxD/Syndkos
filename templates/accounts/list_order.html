@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% if orders %}
+<section class="middle-container">
+  <div class="middle-content-header">
+    <div class="middle-title">
+      <h2>Seus pedidos</h2>
+    </div>
+</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Endereço</th>
+        <th>E-mail</th>
+        <th>Finalizado</th>
+        <th>Criado em</th>
+        <th>Modificado em</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+      <tr>
+        <td>{{order.address|truncatechars:25}}</td>
+        <td>{{order.email}}</td>
+        <td>{{order.finish}}</td>
+        <td>{{order.created_at|date:"d/m/Y - H:i"}}</td>
+        <td>{{order.modified_at|date:"d/m/Y - H:i"}}</td>
+        <td>            
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+  
+{% else %}
+<h2>Não há nenhum pedido</h2>
+{% endif %}
+
+{% endblock %}

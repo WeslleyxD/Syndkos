@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views.decorators.http import require_POST
-from products.models import Product
 from .cart import Cart
 from .forms import CartAddProductForm, CartUpdateProductForm
+from products.models import Product
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.http import require_POST
+
 
 @require_POST
 def cart_add(request, product_id):
@@ -15,12 +16,14 @@ def cart_add(request, product_id):
         cart.add(product=product, quantity=cd['quantity'])
     return redirect('cart:cart_detail')
 
+
 @require_POST
 def cart_remove(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
     cart.remove(product)
     return redirect('cart:cart_detail')
+
 
 @require_POST
 def cart_update(request, product_id):
@@ -32,15 +35,13 @@ def cart_update(request, product_id):
         cart.update(product=product, quantity=cd['quantity'])
     return redirect('cart:cart_detail')
 
+
 def cart_detail(request):
-    if not request.user.is_authenticated:
-        return render(request, 'cart/not_login.html')
+    logged = request.user.is_authenticated
 
     cart = Cart(request)
-
     for item in cart:
-        print (item)
         item['add_quantity_form'] = CartAddProductForm()
         item['update_quantity_form'] = CartUpdateProductForm()
 
-    return render(request, 'cart/detail_cart.html', {'cart': cart})
+    return render(request, 'cart/detail_cart.html', {'cart': cart, 'logged': logged})

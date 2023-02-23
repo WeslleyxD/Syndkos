@@ -1,14 +1,13 @@
 from django.db import models
 from products.models import Product
 from decimal import Decimal
-from accounts.models import User
+from accounts.models import User, Address
 
 
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders', verbose_name='Usuário')
-    address = models.CharField('Endereço', max_length=300)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order', verbose_name='Usuário')
+    address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='order', verbose_name='Endereço', max_length=300)
     email = models.EmailField('E-mail',)
-    cep = models.CharField('CEP', max_length=8)
     finish = models.BooleanField('Finalizado', default=False)
     created_at = models.DateTimeField('Criado em', auto_now_add=True, editable=False)
     modified_at = models.DateTimeField('Modificado em', auto_now=True)
@@ -18,12 +17,13 @@ class Order(models.Model):
         verbose_name_plural = "Pedidos"
         
     def __str__(self):
-        return f"{self.address} {self.cep} {self.email}"
+        return f"{self.address.get_full_address()} {self.email}"
 
     def get_total_cost(self):
         total_cost = sum(item.get_cost() for item in self.items.all())
         return total_cost
         
+
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='order_items', verbose_name='Pedido')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='order_items', verbose_name='Produto')

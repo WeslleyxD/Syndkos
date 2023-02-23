@@ -1,19 +1,20 @@
 from django.core.management.base import BaseCommand, CommandError
 # from accounts.models import User
 from django.apps import apps
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth.models import Permission
+from django.contrib.auth.models import Permission, Group
 
 
 class Command(BaseCommand):
     help = 'Closes the specified poll for voting'
-
+    
     def handle(self, *args, **options):
+        super().handle(*args, **options)
         all_models = apps.get_models()
 
 
-        from django.contrib.auth.models import Group
-
+        create_group_seller = Group.objects.update_or_create(name='Cliente')
+        create_group_seller = Group.objects.update_or_create(name='Vendedor')
+        
 
         # my_group.permissions.add(permission)
 

@@ -4,12 +4,12 @@
 
 <section class="delete-category-container">
     <div class="delete-category-content">
-    <h2>Deseja realmente excluir a categoria {{category.name}}?</h2>
+    <h2>Deseja realmente excluir o endereço {{category.logradouro}}?</h2>
         <form method="POST">
             {% csrf_token %}
             <div class="delete-category-buttons">
                 <button type="submit">Excluir</button>
-                <a href="{% url 'manager:list_category' %}"><button type="button"> Voltar </button></a>
+                <a href="{% url 'accounts:list_address' %}"><button type="button"> Voltar </button></a>
             </div>
         </form>
     </div>

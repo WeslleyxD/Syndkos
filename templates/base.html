@@ -51,12 +51,12 @@
                             {% if request.user.groups_model == 'VENDEDOR' %}
                             <a href="{% url 'manager:manager' %}"><span>Olá, {{user_authenticated|capfirst}}!</span></a>
                             {% else %}
-                            <a href="{% url 'core:index' %}"><span>Olá, {{user_authenticated|capfirst}}!</span></a>
+                            <a href="{% url 'accounts:home' %}"><span>Olá, {{user_authenticated|capfirst}}!</span></a>
                             {% endif %}
                             <h6>{{request.user.groups_model}}</h6>
                         </div>
                         {% else %}
-                            <a href="{% url 'accounts:login_user' %}"><span>{{user_authenticated|capfirst}}</span></a>
+                            <a href="{% url 'accounts:home' %}"><span>{{user_authenticated|capfirst}}</span></a>
                         {% endif %}
                             <i class="fa-solid fa-user"></i>
                     </div>
@@ -91,8 +91,8 @@
             </div>
     </header>
 
+    {% include 'messages.html' %}
     {% block content %}
-
 
     {% endblock %}
 

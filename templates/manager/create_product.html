@@ -9,7 +9,6 @@
                 <h2>Criar produto</h2>
             </div>
             <form method="POST" enctype="multipart/form-data">
-                <!-- TODO: CONSTRUIR O SEARCH Q| -->
                 {% csrf_token %}
                 {{product_form.as_p}}
                 <div class="create-category-buttons">

@@ -1,59 +1,25 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from orders.models import Order
 from products.forms import CategoryForm, ProductForm
 from products.models import Category, Product
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import permission_required
-from django.forms import modelform_factory
-import json
-from django.http import JsonResponse
-from django.template.loader import render_to_string
 
 # Create your views here.
-
-# # TODO: RESTRINGIR VIEW POR GRUPO
-# @permission_required('products.add_product', raise_exception=True)
-# def create(request):
-
-#     print (request.user)
-#     category_form = CategoryForm()
-#     product_form = ProductForm()
-
-#     # print (request.user.get_group_permissions())
-
-#     if request.method == 'POST':
-#         if 'category_send' in request.POST:
-#             print ('poaskdaopksd')
-#             category_form = CategoryForm(data=request.POST)
-#         elif 'product_send' in request.POST:
-#             print ('xddd')
-#             product_form = ProductForm(data=request.POST)
-
-#     return render(request, 
-#                   'manager/create.html',
-#                   {
-#                     'category_form': category_form,
-#                     'product_form': product_form,
-#                   }
-#     )
 
 @permission_required('products.add_product', raise_exception=True)
 def manager(request):
     categories = Category.objects.all()
     products = Product.objects.all()
 
-    return render(request, 'manager/manager.html',
-                  {
-                    'categories': categories,
-                    'products': products
-                  })
+    return render(request, 'manager/manager.html', {'categories': categories,'products': products})
+
 
 @permission_required('products.add_product', raise_exception=True)
 def list_category(request):
     categories = Category.objects.all()
 
-    return render(request, 'manager/list_category.html',
-                  {
-                    'categories': categories,
-                  })
+    return render(request, 'manager/list_category.html', {'categories': categories,})
+
 
 @permission_required('products.add_product', raise_exception=True)
 def create_category(request):
@@ -69,6 +35,7 @@ def create_category(request):
     
     return render(request, 'manager/create_category.html', {'category_form': category_form})
   
+
 @permission_required('products.add_product', raise_exception=True)
 def update_category(request, id):
     category = get_object_or_404(Category, id=id)
@@ -84,6 +51,7 @@ def update_category(request, id):
 
     return render(request, 'manager/update_category.html',{'category_form': category_form,})
 
+
 @permission_required('products.add_product', raise_exception=True)
 def delete_category(request, id):
     category = get_object_or_404(Category, id=id)
@@ -97,18 +65,12 @@ def delete_category(request, id):
 
 
 
-
-
-
 #PRODUCTS
 @permission_required('products.add_product', raise_exception=True)
 def list_product(request):
     products = Product.objects.all()
 
-    return render(request, 'manager/list_product.html',
-                  {
-                    'products': products,
-                  })
+    return render(request, 'manager/list_product.html', {'products': products,})
 
 
 @permission_required('products.add_product', raise_exception=True)
@@ -125,6 +87,7 @@ def create_product(request):
 
     return render(request, 'manager/create_product.html', {'product_form': product_form})
 
+
 @permission_required('products.add_product', raise_exception=True)
 def update_product(request, id):
     product = get_object_or_404(Product, id=id)
@@ -140,6 +103,7 @@ def update_product(request, id):
     
     return render(request, 'manager/update_product.html', {'product_form': product_form,})
 
+
 @permission_required('products.add_product', raise_exception=True)
 def delete_product(request, id):
     product = get_object_or_404(Product, id=id)
@@ -150,3 +114,13 @@ def delete_product(request, id):
         return redirect ('manager:list_product')
 
     return render(request, 'manager/delete_product.html', {'product': product})
+
+
+
+#ORDERS
+@permission_required('products.add_product', raise_exception=True)
+def list_order(request):
+    orders = Order.objects.all()
+    print (orders)
+
+    return render(request, 'manager/list_order.html', {'orders': orders,})
